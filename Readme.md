@@ -6,4 +6,4 @@
 
 
 
-![Gato ayudante](Figure1.pdf)
+![von neumann linear stability](Figure1.png)
