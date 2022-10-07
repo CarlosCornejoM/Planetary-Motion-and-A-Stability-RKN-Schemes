@@ -2,7 +2,7 @@
 
 ## Instrucciones
 
-- Using a butcher tableau linear stability domain can be calculated using Evalue_Stability_Function()
+-Linear stability region is determined by a butcher tableau representation, using Evalue_Stability_Function()
 
 
 
