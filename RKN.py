@@ -1,3 +1,4 @@
+from cProfile import label
 import numpy as np
 import scipy as sp
 import matplotlib as mpl
@@ -85,6 +86,32 @@ def paso_RKN(funcion, h, t_n, y_n, butcher_tableau):
 
 Euler = np.array([[0, 0],
                   [0, 1]])
+
+
+EulerImplicit = np.array([[1, 1],
+                          [0, 1]])
+
+
+LobattoIIIC = np.array([[0, 1/2, -1/2],
+                        [1, 1/2, 1/2],
+                        [0, 1/2, 1/2]])
+
+LobattoIIID = np.array([[0, 1/6, 0, -1/6],
+                        [1/2, 1/12, 5/12, 0],
+                        [1, 1/2, 1/3, 1/6],
+                        [0, 1/6, 2/3, 1/6]])
+
+
+RadauIIA_3  = np.array([[1/3, 5/12, -1/12],
+                        [1, 3/4, 1/4],
+                        [0, 3/4, 1/4]])
+
+
+
+RadauIIA_5 = np.array([[2/5-np.sqrt(6)/10, 11/45-7*np.sqrt(6)/360, 37/225-169*np.sqrt(6)/1800, -2/225+np.sqrt(6)/75],
+                       [2/5+np.sqrt(6)/10, 37/225+169*np.sqrt(6)/1800, 11/45+7*np.sqrt(6)/360, -2/225-np.sqrt(6)/75],
+                       [1, 4/9-np.sqrt(6)/36, 4/9+np.sqrt(6)/36, 1/9],
+                       [0, 4/9-np.sqrt(6)/36, 4/9+np.sqrt(6)/36, 1/9]])
 
 
 Fehlberg2 = np.array([[0, 0, 0, 0],
@@ -236,6 +263,7 @@ def analitica_prueba(t):
     return output
 
 
+"""
 Prueba = solver_ode(edo_prueba, 0, np.array([0.5]), 0.1, 21)
 x = Prueba[1]
 y = Prueba[0][:, 0]
@@ -285,6 +313,7 @@ ax.set_ylabel('y', fontsize=16)
 ax.set_zlabel('z', fontsize=16)
 plt.legend(fontsize=14)
 plt.show()
+"""
 
 
 def Stability_Function(z, butcher_tableau):
@@ -308,69 +337,65 @@ def Evalue_Stability_Function(Method, xlim, ylim, resolution):
     output = z
     return output
 
-
-xlim = [-4, 4]
+N = 300
+xlim = [-4, 2]
 ylim = [-4, 4]
-AS_Euler = Evalue_Stability_Function(Euler, xlim, ylim, 100)
-AS_Fehlberg2 = Evalue_Stability_Function(Fehlberg2, xlim, ylim, 100)
-AS_RK2 = Evalue_Stability_Function(RK2, xlim, ylim, 100)
-AS_RK3 = Evalue_Stability_Function(RK3, xlim, ylim, 100)
-AS_RK4 = Evalue_Stability_Function(RK4, xlim, ylim, 100)
-AS_DP4 = Evalue_Stability_Function(DP4, xlim, ylim, 100)
-AS_RK5 = Evalue_Stability_Function(RK5, xlim, ylim, 100)
-AS_DP5 = Evalue_Stability_Function(RK4, xlim, ylim, 100)
+
+AS_Euler = Evalue_Stability_Function(Euler, xlim, ylim, N)
+AS_RK2 = Evalue_Stability_Function(RK2, xlim, ylim, N)
+AS_RK3 = Evalue_Stability_Function(RK3, xlim, ylim, N)
+AS_RK4 = Evalue_Stability_Function(RK4, xlim, ylim, N)
+AS_RK5 = Evalue_Stability_Function(RK5, xlim, ylim, N)
+xlim_2 = [-15,15]
+ylim_2 = [-15,15]
+AS_EulerImplicit = Evalue_Stability_Function(EulerImplicit, xlim_2, ylim_2, N)
+AS_LobattoIIIC = Evalue_Stability_Function(LobattoIIIC, xlim_2, ylim_2, N)
+AS_LobattoIIID = Evalue_Stability_Function(LobattoIIID, xlim_2, ylim_2, N)
+AS_RadauIIA_3 = Evalue_Stability_Function(RadauIIA_3, xlim_2, ylim_2, N)
+AS_RadauIIA_5 = Evalue_Stability_Function(RadauIIA_5, xlim_2, ylim_2, N)
 
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Euler ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_Euler.astype(float), extent=(xlim[0], xlim[1],
+fig, axes = plt.subplots(2, 5)
+fig.suptitle("A-Stability of Explicit and Implicit Runge Kutta schemes")  
+
+axes[0, 0].set_title('Euler ')
+axes[0, 1].set_title('Runge Kutta 2')
+axes[0, 2].set_title('Runge Kutta 3')
+axes[0, 3].set_title('Runge Kutta 4')
+axes[0, 4].set_title('Runge Kutta 5')
+axes[1, 0].set_title('Implicit Euler ')
+axes[1, 1].set_title('LobattoIIIC ')
+axes[1, 2].set_title('LobattoIIID ')
+axes[1, 3].set_title('RadauIIA_3')
+axes[1, 4].set_title('RadauIIA_5')
+
+axes[0, 0].imshow(AS_Euler.astype(float), extent=(xlim[0], xlim[1],
            ylim[0], ylim[1]), origin="upper", cmap="inferno")
-plt.show()
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Fehlberg2 ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_Fehlberg2.astype(float), extent=(xlim[0], xlim[1],
+axes[0, 1].imshow(AS_RK2.astype(float), extent=(xlim[0], xlim[1],
            ylim[0], ylim[1]), origin="upper", cmap="inferno")
-plt.show()
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Runge Kutta 2 ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_RK2.astype(float), extent=(xlim[0], xlim[1],
+axes[0, 2].imshow(AS_RK3.astype(float), extent=(xlim[0], xlim[1],
            ylim[0], ylim[1]), origin="upper", cmap="inferno")
-plt.show()
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Runge Kutta 3 ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_RK3.astype(float), extent=(xlim[0], xlim[1],
+axes[0, 3].imshow(AS_RK4.astype(float), extent=(xlim[0], xlim[1],
            ylim[0], ylim[1]), origin="upper", cmap="inferno")
-plt.show()
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Runge Kutta 4 ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_RK4.astype(float), extent=(xlim[0], xlim[1],
+axes[0, 4].imshow(AS_RK5.astype(float), extent=(xlim[0], xlim[1],
            ylim[0], ylim[1]), origin="upper", cmap="inferno")
-plt.show()
 
-plt.figure()
-plt.grid(True, 'minor')
-plt.title('A-Stability of Runge Kutta 5 ')
-plt.xlabel("Re(z)")
-plt.ylabel("Im(z)")
-plt.imshow(AS_RK5.astype(float), extent=(xlim[0], xlim[1],
-           ylim[0], ylim[1]), origin="upper", cmap="inferno")
+axes[1, 0].imshow(AS_EulerImplicit.astype(float), extent=(xlim_2[0], xlim_2[1],
+           ylim_2[0], ylim_2[1]), origin="upper", cmap="inferno")
+
+axes[1, 1].imshow(AS_LobattoIIIC.astype(float), extent=(xlim_2[0], xlim_2[1],
+           ylim_2[0], ylim_2[1]), origin="upper", cmap="inferno")
+
+axes[1, 2].imshow(AS_LobattoIIID.astype(float), extent=(xlim_2[0], xlim_2[1],
+           ylim_2[0], ylim_2[1]), origin="upper", cmap="inferno")
+
+axes[1, 3].imshow(AS_RadauIIA_3.astype(float), extent=(xlim_2[0], xlim_2[1],
+           ylim_2[0], ylim_2[1]), origin="upper", cmap="inferno")
+
+axes[1, 4].imshow(AS_RadauIIA_5.astype(float), extent=(xlim_2[0], xlim_2[1],
+           ylim_2[0], ylim_2[1]), origin="upper", cmap="inferno")
 plt.show()
