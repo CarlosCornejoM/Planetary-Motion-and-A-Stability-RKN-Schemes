@@ -6,4 +6,4 @@
 
 
 
-![von neumann linear stability](Figure1.png)
+![von neumann linear stability](Figure_1.pdf)
