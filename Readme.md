@@ -7,4 +7,4 @@
 
 
 ![von neumann linear stability](Figure_1.png)
-![von neumann linear stability](1.gif)
+<img src="1.gif" width="250" height="250"/>
