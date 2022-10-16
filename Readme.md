@@ -7,7 +7,7 @@
 
 
 ![von neumann linear stability](Figure_1.png)
-<img src="/gifs/8.gif" width="600" height="400"/>
+<img src="/gifs/8.gif" width="600" height="700"/>
 <img src="/gifs/1.gif" width="400" height="400"/>
 <img src="/gifs/2.gif" width="400" height="400"/>
 <img src="/gifs/3.gif" width="250" height="250"/>
