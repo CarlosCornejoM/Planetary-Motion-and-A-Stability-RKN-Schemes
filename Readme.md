@@ -6,7 +6,7 @@ Integra las ecuaciones diferenciales de gravitación acopladas para N cuerpos
 
 ## Caracteristicas
 
-Para mas informacion leer docstrings
+Para mas información leer docstrings
 
 - Integración de ecuaciones mediante Runge kutta, que acepta métodos Implicitos y Explicitos dada una butcher_tableau
 - Integracion por verlet en velocidad con paso fijo
