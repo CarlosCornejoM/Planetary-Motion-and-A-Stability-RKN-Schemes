@@ -1,0 +1,200 @@
+%% ================================
+%% Packages =======================
+\documentclass[letter, 11pt]{article}
+%% ================================
+%% Packages =======================
+\usepackage[utf8]{inputenc}      %%
+\usepackage[T1]{fontenc}         %%
+\usepackage{lmodern}             %%
+\usepackage[spanish]{babel}      %%
+\decimalpoint                    %%
+\usepackage{fullpage}            %%
+\usepackage{fancyhdr}            %%
+\usepackage{graphicx}            %%
+\usepackage{amsmath}             %%
+\usepackage{color}               %%
+\usepackage{mdframed}            %%
+\usepackage[colorlinks]{hyperref}%%
+%% ================================
+%% ================================
+
+%% ================================
+%% Page size/borders config =======
+\setlength{\oddsidemargin}{0in}  %%
+\setlength{\evensidemargin}{0in} %%
+\setlength{\marginparwidth}{0in} %%
+\setlength{\marginparsep}{0in}   %%
+\setlength{\voffset}{-0.5in}     %%
+\setlength{\hoffset}{0in}        %%
+\setlength{\topmargin}{0in}      %%
+\setlength{\headheight}{54pt}    %%
+\setlength{\headsep}{1em}        %%
+\setlength{\textheight}{8.5in}   %%
+\setlength{\footskip}{0.5in}     %%
+%% ================================
+%% ================================
+
+%% =============================================================
+%% Headers setup, environments, colors, etc.
+%%
+%% Header ------------------------------------------------------
+\fancypagestyle{firstpage}
+{
+  \fancyhf{}
+  \lhead{\includegraphics[height=4.5em]{LogoDFI.jpg}}
+  \rhead{FI3104-1 \semestre\\
+         Métodos Numéricos para la Ciencia e Ingeniería\\
+         Prof.: \profesor}
+  \fancyfoot[C]{\thepage}
+}
+
+\pagestyle{plain}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+%% -------------------------------------------------------------
+%% Environments -------------------------------------------------
+\newmdenv[
+  linecolor=gray,
+  fontcolor=gray,
+  linewidth=0.2em,
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep
+  skipbelow=\topsep,
+]{ayuda}
+%% -------------------------------------------------------------
+%% Colors ------------------------------------------------------
+\definecolor{gray}{rgb}{0.5, 0.5, 0.5}
+%% -------------------------------------------------------------
+%% Aliases ------------------------------------------------------
+\newcommand{\scipy}{\texttt{scipy}}
+%% -------------------------------------------------------------
+%% =============================================================
+%% =============================================================================
+%% CONFIGURACION DEL DOCUMENTO =================================================
+%% Llenar con la información pertinente al curso y la tarea
+%%
+\newcommand{\tareanro}{5}
+\newcommand{\fechaentrega}{17/10/2022 22:59 hrs}
+\newcommand{\semestre}{2022B}
+\newcommand{\profesor}{Valentino González}
+%% =============================================================================
+%% =============================================================================
+
+
+\begin{document}
+\thispagestyle{firstpage}
+
+\begin{center}
+  {\uppercase{\LARGE \bf Tarea \tareanro}}\\
+  Fecha de entrega: \fechaentrega
+\end{center}
+
+
+%% =============================================================================
+%% ENUNCIADO ===================================================================
+\noindent{\large \bf Problema}
+
+El problema de interacción gravitacional de 3 cuerpos es en general caótico pero
+existen varias soluciones \emph{interesantes}, algunas de ellas incluso
+estables. A pesar de ser un problema antiguo, varias de las soluciones
+\emph{interesantes} han sido descubiertas recientemente.
+
+En este problema, Ud. debe integrar numéricamente las trayectorias de 3 cuerpos
+que interactúan gravitacionalmente. Dadas las condiciones iniciales que
+consideraremos, las trayectorias están restringidas al plano $x-y$. Las
+condiciones iniciales a considerar son las siguientes:
+
+\vspace{0.5em}
+Masa 1:
+$\vec{r_0} = [-0.97000436, 0.24308753], \vec{v_0}= [0.466203685, 0.43236573]$ 
+
+Masa 2:
+$\vec{r_0} = [0.97000436, -0.24308753], \vec{v_0}= [0.466203685, 0.43236573]$ 
+
+Masa 3:
+$\vec{r_0} = [0, 0], \vec{v_0}= [-0.93240737, -0.86473146] $ 
+
+\vspace{0.5em}
+Además, consideraremos: $G = m_1 = m_2 = m_3 = 1$ (esto fija las unidades de las
+condiciones iniciales indicadas más arriba).
+
+{\bf Esta tarea debe ser resuelta utilizando OOP.} El archivo
+\texttt{codigo/planetario.py} contiene el esqueleto de la clase
+\texttt{TresCuerpos}. Ud. debe implementar los métodos de esta clase para
+resolver el problema. Los \texttt{docstrings} explican en qué debe consistir
+cada método. Ud. tiene libertad de mejorar los \texttt{docstrings}, agregar
+atributos y métodos a la clase según le parezca conveniente.
+
+En particular, debe:
+
+\begin{enumerate}
+
+  \item Implementar pasos temporales utilizando ya sea el método de Verlet o el
+    de Beeman. Utilice el esqueleto del método llamado
+    \texttt{verlet\_o\_beeman} y cámbiele el nombre según corresponda. Debe
+    implementar el método.
+
+  \item Implementar pasos temporales utilizando el método de Runge-Kutta (al
+    menos orden 4). No es necesario que lo implemente para esta tarea. Como
+    sugerencia, si bien puede usar una librería (por ejemplo \texttt{scipy}),
+    probablemente sería más sencillo usar el código que ya implementó en una
+    tare anterior.
+
+  \item Por simplicidad, para esta tarea no usaremos paso adaptativo, puede
+    definir un paso pequeño y usar el mismo paso para toda la integración. Debe
+    decir qué pruebas hizo para decidir que el paso utilizado era adecuado.
+
+  \item Debe calcular las trayectorias de las 3 partículas con los 2 métodos
+    escogidos y compararlas. Como sugerencia, cree 2 objetos de la clase
+    \texttt{TresCuerpos} e integre uno con Verlet (o Beeman) y el otro con RK
+    para compararlos.
+
+  \item Debe estudiar la energía total del sistema y ver cómo evoluciona en los
+    2 métodos de integración. Comente sobre las similitudes o diferencias en su
+    informe.
+
+\end{enumerate}
+
+
+\begin{ayuda}
+  \small
+  \noindent {\bf Visualización.}
+
+  La clase \texttt{TresCuerpos} contiene el método
+  \texttt{show\_animated\_orbit} que muestra una animación de las órbitas de los
+  3 planetas. Para poder usarla, debe tener \texttt{matplotlib} instalado pero
+  {\bf NO ES NECESARIO USAR ESTE MÉTODO}, es sólo una adición que le puede
+  parecer interesante. También pueden usar el código como inspiración para
+  escribir otros métodos de visualización de las órbitas o para generar gráficos
+  estáticos.
+
+\end{ayuda}
+
+%% FIN ENUNCIADO ===============================================================
+%% =============================================================================
+
+\vspace{2em}
+\noindent\textbf{Información e Instrucciones Importantes.}
+\begin{itemize}
+
+\item Repartición de puntaje:
+
+  \subitem Código: 5\% (aprobar PEP8) + 5\% (uso de git) + 50\% resolución del
+  problema, implementación de los algoritmos necesarios, considerando además:
+  uso efectivo de nombres, modularidad, calidad y utilidad de los
+  \texttt{docstrings}.
+  
+  \subitem Informe 40\%: Calidad del reporte considerando: análisis de las
+  soluciones, comparación de los métodos en términos de las órbitas y de las
+  energías del sistema. Claridad del lenguaje, calidad de las figuras y/o
+  tablas. Como referencia, probablemente 3 páginas son suficientes para esta
+  tarea.
+
+\item \textbf{REVISE SU ORTOGRAFÍA.}
+
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
