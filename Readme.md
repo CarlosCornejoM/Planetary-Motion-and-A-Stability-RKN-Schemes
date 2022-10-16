@@ -22,7 +22,7 @@ Para mas informacion leer docstrings
 
 - Se genera un gráfico de la energía mecanica total
 
-<img src="/gifs/2.gif" width="480" height="480"/>
+<img src="/gifs/2.gif" />
 
 ![Energy](Figure_2.png)
 
