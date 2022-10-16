@@ -31,8 +31,8 @@ Para mas informacion leer docstrings
     - La simulacion no pretende ser precisa, solamente se presenta de manera explicativa
     - No se toma en cuenta la inclinacion orbital, afectando la precision de la orbita de mercurio
     - Se desprecia el efecto gravitacional de las lunas y cinturones de asteroides
-<img src="/gifs/7.gif" width="250" height="250"/>
-<img src="/gifs/8.gif" width="250" height="250"/>
+<img src="/gifs/7.gif" />
+<img src="/gifs/8.gif" />
 
 
 ## Referencias
