@@ -1,5 +1,6 @@
 # Problema de los n cuerpos
 Integra las ecuaciones diferenciales de gravitación acopladas para N cuerpos
+
 <img src="/gifs/1.gif"/>
 
 ## Caracteristicas
