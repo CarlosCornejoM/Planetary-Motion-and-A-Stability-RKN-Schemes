@@ -37,8 +37,8 @@ Para mas informacion leer docstrings
 
 ## Referencias
 - R. Broucke, D. Boggs, On relative periodic solutions of the planar general three-body problem, Celest. Mech. 12, 439 (1975).
-- X. Li, S. Liao, More than six hundred new families of Newtonian periodic planar collisionless three-body orbits, Science China-Physics, Mechanics & Astronomy, Vol. 60, No.12, 129511 (2017).  https://arxiv.org/abs/2111.10839
-- X. Li, Y. Jing, S. Liao, The 1223 new periodic orbits of planar three-body problem with unequal mass and zero angular momentum, Publications of the Astronomical Society of Japan, (published online, 2018). arXiv:1709.04775
+- X. Li, S. Liao, More than six hundred new families of Newtonian periodic planar collisionless three-body orbits, Science China-Physics, Mechanics & Astronomy, Vol. 60, No.12, 129511 (2017).
+- X. Li, Y. Jing, S. Liao, The 1223 new periodic orbits of planar three-body problem with unequal mass and zero angular momentum, Publications of the Astronomical Society of Japan, (published online, 2018).
 - Datos orbitales obtenidos de - https://nssdc.gsfc.nasa.gov/planetary/factsheet/
 - Alan L. Myers, "Natural units of general relativity", (2016) - https://www.seas.upenn.edu/~amyers/NaturalUnits.pdf
 - Rajihy, Yasen & Mechee, Mohammed. (2017). Generalized RK Integrators for Solving Ordinary Differential Equations: A Survey & Comparison Study. Global Journal of Pure and Applied Mathematics. 13. 2923-2949.
