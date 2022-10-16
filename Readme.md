@@ -19,9 +19,11 @@ Para mas informacion leer docstrings
 <img src="/gifs/3.gif" />
 <img src="/gifs/4.gif" />
 <img src="/gifs/5.gif" />
-<img src="/gifs/6.gif" />
+
 - Se genera un gráfico de la energía mecanica total
+
 <img src="/gifs/2.gif" width="480" height="480"/>
+
 ![Energy](Figure_2.png)
 
 - Se creó una función que transforma de Sistema Internacional a Unidades Naturales (geometrodynamic)
