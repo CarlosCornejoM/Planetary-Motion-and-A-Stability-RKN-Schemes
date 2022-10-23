@@ -33,7 +33,7 @@ Para mas información leer docstrings
     - Se desprecia el efecto gravitacional de las lunas y cinturones de asteroides
 <img src="/gifs/7.gif" />
 <img src="/gifs/8.gif" />
-<img src="/gifs/grand finale.gif" />
+<img src="/gifs/grand finale.gif"[6] />
 
 ## Referencias
 - R. Broucke, D. Boggs, On relative periodic solutions of the planar general three-body problem, Celest. Mech. 12, 439 (1975).
